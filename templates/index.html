@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}belat - праца з тэкстам{% endblock %}
+
+{% block link %}<a href="/file" id="file_link">Праца з файлам</a>{% endblock %}
+
+{% block work_form %}
+    <form action="" method="POST" id="text_form">
+        <p>
+            <textarea rows="7" cols="62" name="text_in">{{ text_in }}</textarea>
+        </p>
+        <p>
+            <select name="scheme">
+                {% set ns = namespace(i=0) %}
+                {% for e in schemes %}
+                    {% if ns.i==sel_scheme %}
+                        <option value="{{ns.i}}" selected>{{e.name}}</option>
+                    {% else %}
+                        <option value="{{ns.i}}">{{e.name}}</option>
+                    {% endif %}
+                    {% set ns.i = ns.i + 1 %}
+                {% endfor %}
+            </select>
+
+            <select name="dir">
+                {% if sel_dir==0 %}
+                    <option value="0" selected>Кірыліца -> Лацінка</option>
+                    <option value="1">Лацінка -> Кірыліца</option>
+                {% elif sel_dir==1 %}
+                    <option value="0">Кірыліца -> Лацінка</option>
+                    <option value="1" selected>Лацінка -> Кірыліца</option>
+                {% endif %}
+            </select>
+            <input type="submit" value="Трансліт">
+        </p>
+    </form>
+
+    <textarea rows="7" cols="62" name="text_out">{{ text_out }}</textarea>
+{% endblock %}

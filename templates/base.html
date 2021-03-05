@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{% block title %}{% endblock %}</title>
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" 
+            href="{{ url_for('static', filename='styles/style.css') }}">
+    </head>
+    <body>
+        <div id="header">
+            <img src="/static/img/logo.png" onclick="document.getElementById('text_form')[0].reset();">
+            <div id="image_neighb">
+                {% block link %}{% endblock %}
+                <br>
+                <p id="version">Версія Belat {{ version }}</p>
+            </div>
+            <div id="image_neighb_next">
+                <p>Зыходны код:
+                    <a href="https://github.com/alex-rusakevich/belat">https://github.com/alex-rusakevich/belat</a></p>
+                <p>Скаргі на праблемы з сайтам пішыце на<br>
+                    mr.alexander.rusakevich@gmail.com
+                </p>
+            </div>
+        </div>
+
+        <div id="wrk_area">
+            {% block work_form %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
