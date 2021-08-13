@@ -5,35 +5,62 @@
 {% block link %}<a href="/file" id="file_link">Праца з файлам</a>{% endblock %}
 
 {% block work_form %}
-    <form action="" method="POST" id="text_form">
-        <p>
-            <textarea rows="7" cols="62" name="text_in">{{ text_in }}</textarea>
-        </p>
-        <p>
-            <select name="scheme">
-                {% set ns = namespace(i=0) %}
-                {% for e in schemes %}
-                    {% if ns.i==sel_scheme %}
-                        <option value="{{ns.i}}" selected>{{e.name}}</option>
-                    {% else %}
-                        <option value="{{ns.i}}">{{e.name}}</option>
-                    {% endif %}
-                    {% set ns.i = ns.i + 1 %}
-                {% endfor %}
-            </select>
+    <div class="work_area text_form">
+            <section class="work_area">
+                <form action="" method="POST">
+                    <div class="buttons">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="kir-lat">
+                                        <select class="buttons_" name="dir">
+                                                {% if sel_dir==0 %}
+                                                <option value="0" selected>Кірыліца -> Лацінка</option>
+                                                <option value="1"  >Лацінка -> Кірыліца</option>
+                                            {% elif sel_dir==1 %}
+                                                <option value="0" >Кірыліца -> Лацінка</option>
+                                                <option value="1" selected>Лацінка -> Кірыліца</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                        <textarea rows="9" class="form-control text_in" name="text_in">{{ text_in }}</textarea>
 
-            <select name="dir">
-                {% if sel_dir==0 %}
-                    <option value="0" selected>Кірыліца -> Лацінка</option>
-                    <option value="1">Лацінка -> Кірыліца</option>
-                {% elif sel_dir==1 %}
-                    <option value="0">Кірыліца -> Лацінка</option>
-                    <option value="1" selected>Лацінка -> Кірыліца</option>
-                {% endif %}
-            </select>
-            <input type="submit" value="Трансліт">
-        </p>
-    </form>
-
-    <textarea rows="7" cols="62" name="text_out">{{ text_out }}</textarea>
+                                        <select class="buttons_" name="scheme">
+                                            {% set ns = namespace(i=0) %}
+                                            {% for e in schemes %}
+                                                {% if ns.i==sel_scheme %}
+                                                    <option value="{{ns.i}}" selected>{{e.name}}</option>
+                                                {% else %}
+                                                    <option value="{{ns.i}}">{{e.name}}</option>
+                                                {% endif %}
+                                                {% set ns.i = ns.i + 1 %}
+                                            {% endfor %}
+                                        </select>
+                                    <div class="translit">
+                                        <input type="submit" class="translit butn_" value="Трансліт">
+                                    </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">  
+                                </div>
+                            </div>
+                                </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <textarea rows="9" class="form-control text_out" name="text_out" >{{ text_out }}</textarea>
+                                        </div>
+                                       
+                                    </div>
+                            </div>            
+                        </div>
+                </form>
+                        
+            </section>
+    
+    </div>
 {% endblock %}
