@@ -16,7 +16,8 @@
                                 <form action="" method="POST" id="text_form" enctype="multipart/form-data">
                                     <input type="file" name="file" class="file">
                                     <div class="row_1">
-                                        <select name="file_type" class="buttons_">
+                                        
+                                        <select name="file_type" class="buttons_ txt">
                                             {% set ns = namespace(i=0) %}
                                             {% for e in file_types %}
                                                 {% if ns.i==sel_file_type %}
