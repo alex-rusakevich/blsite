@@ -1,98 +1,193 @@
-body {
-    background-color: #eee2dc;
-    background-image: url(/static/img/bg.png);
-    background-repeat: repeat;
+
+
+/*header*/
+header{
+    background-image: url("/static/img/орнамент2.jpg");
+    background-size: contain;
+    max-height: 40%;
+    border-bottom: 7px solid #FF1C23;
+    border-top: 7px solid #FF1C23;
 }
 
-* {
-    font-family: 'Open Sans', sans-serif;
-    color: #123c69;
+html, body{
+    background-color: #FFF7F7;
 }
 
-*:focus {
-    outline: none;
+html, body, .container{
+    height:100%;
 }
 
-textarea, select {
-    font-family: 'Open Sans', sans-serif;
+a{
+    text-decoration: none;
+}
+.praca_btn{
+    background-color: white;
+
+
+    border: 2px solid black;
+    text-align: center;
+    margin-top: -10px;
 }
 
-input[type="submit"], #file_link {
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: 0;
-    background-color: #ac3b61;
-    color: #fff;
-    box-shadow: none;
-    border-radius: 0px;
-    padding: 3mm;
-    margin-top: 1mm;
-    height: 100%;
-    width: 5cm;
+.right_btn_praca div{
+    max-width: 14em;
+    min-height: 2.5em;
+    margin-left: auto;
+    margin-right: 3em;
 }
 
-#header {
-    display: inline-block;
-    text-align: left;
-    margin-left: 5%;
+.praca_btn:hover{
+    background-color:#EFEFEF;
+    color: white;
 }
 
-input[type="submit"]:focus {
-    background-color: #8E3152;
+.belat {
+	font-size: 50px;
+	color: #000;
+    padding: 25px 0 25px 0;
+}
+.belat span {
+	display: inline;
+	background-color: rgba(0, 0, 0, 0.5);
+	box-shadow: -10px 0 0 rgba(0, 0, 0, 0.5), 10px 0 0 rgba(0, 0, 0, 0.5);
+	padding: 0 4px 0 0;
+	color: #FFFFFF;
+	line-height: 14px;
+	font-size: 40px;
+    font-family: 'Roboto Slab', serif;
 }
 
-select {
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    appearance: none; 
-    border: 0;
-    background-color: #ac3b61;
-    color: #fff;
-    box-shadow: none;
-    border-radius: 0px;
-    margin-top: 1mm;
-    padding: 3mm;
-    height: 100%;
+.latinca{
+    font-family: 'Lobster', cursive;
+
+
 }
 
-textarea {
-    width: 90%;
-    resize: vertical;
-    color: #123c69;
-    font-size: x-large;
+
+/*index*/
+
+.work_area{
+
+    padding-top:10px;
 }
 
-#wrk_area {
-    margin: 0 auto; 
+.text_in{
+    margin-bottom: 10px;
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+.text_out{
+
+    margin-bottom: 15%;
+    border: 2px solid black;
+}
+
+
+.translit{
+    float: right;
+    display: block;
+    padding: 5px;
+    margin-top: -3px;
+    margin-right: -2px;
+
+}
+
+/*common*/
+
+.buttons{
+    padding-bottom: 10px;
+}
+
+
+.buttons_{
+    border: 2px solid black;
+    border-radius: 6px;
+    padding: 5px;
+
+}
+
+.buttons_:hover{
+    background-color: #EFEFEf;
+    cursor: pointer;
+}
+
+.butn_{
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 6px;
+}
+
+.butn_:hover{
+    background-color:#EFEFEf;
+}
+
+
+
+/*file work*/
+
+.work_{
+    margin-top: 60px;
+    margin-bottom: 20px;
+    height: 300px;;
+
+    
+}
+
+.text_{
+    margin-bottom: 80px;
     text-align: center;
 }
 
-#file_link {
-    text-decoration: none;
+.ptushka_left{
+    background: no-repeat;
+    background-image: url(/static/img/ptushka.png);
+
 }
 
-#image_neighb {
-    display: inline-block;
-    position: absolute;
-    margin-top: 35px;
+.ptushka_right{
+    background: no-repeat;
+    background-image: url(/static/img/ptushka.png);
+    transform: scale(-1,1);
+ 
+    
+}
+.row_1{
+    padding: 8px;
+    text-align: left;
+    margin-left: 6px;
 }
 
-#image_neighb_next {
-    display: inline-block;
-    position: absolute;
-    margin-top: 20px;
-    margin-left: 180px;
-}
-#image_neighb_next p {
-    margin-top: 0;
-    margin-bottom: 0;
+.row_2{
+    padding-bottom: 8px;
+    text-align: left;
+    margin-left: 13px;
+
 }
 
-#version {
-    position: relative;
-    margin-top: 12px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    color: #123c69;
+.row_3{
+    padding-bottom: 8px;
+    text-align: left;
+
+
+}
+
+.row_4{
+    padding-top: 15px;
+    padding-bottom: 30px;
+    margin-right: 40px;
+    text-align: right;
+}
+.file{
+    margin-left: 12px;
+}
+
+
+
+/*footer*/
+
+
+.footer{
+    text-align: right;
+    margin-right: 10px;
 }

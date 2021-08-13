@@ -5,87 +5,115 @@
 {% block link %}<a href="/" id="file_link">Праца з тэкстам</a>{% endblock %}
 
 {% block work_form %}
-    <form action="" method="POST" id="text_form" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <p>
-            <select name="file_type">
-                {% set ns = namespace(i=0) %}
-                {% for e in file_types %}
-                    {% if ns.i==sel_file_type %}
-                        <option value="{{ns.i}}" selected>{{e}}</option>
-                    {% else %}
-                        <option value="{{ns.i}}">{{e}}</option>
-                    {% endif %}
-                    {% set ns.i = ns.i + 1 %}
-                {% endfor %}
-            </select>
-
-            <select name="scheme">
-                {% set ns = namespace(i=0) %}
-                {% for e in schemes %}
-                    {% if ns.i==sel_scheme %}
-                        <option value="{{ns.i}}" selected>{{e.name}}</option>
-                    {% else %}
-                        <option value="{{ns.i}}">{{e.name}}</option>
-                    {% endif %}
-                    {% set ns.i = ns.i + 1 %}
-                {% endfor %}
-            </select>
-
-            <select name="dir">
-                {% if sel_dir==0 %}
-                    <option value="0" selected>Кірыліца -> Лацінка</option>
-                    <option value="1">Лацінка -> Кірыліца</option>
-                {% elif sel_dir==1 %}
-                    <option value="0">Кірыліца -> Лацінка</option>
-                    <option value="1" selected>Лацінка -> Кірыліца</option>
-                {% endif %}
-            </select>
-            <input type="submit" value="Трансліт">
-
-            З
-
-            <select name="enc_in">
-                {% set ns = namespace(i=0) %}
-                {% for e in encodings %}
-                    {% if ns.i==sel_enc_in %}
-                        <option value="{{ns.i}}" selected>{{e}}</option>
-                    {% else %}
-                        <option value="{{ns.i}}">{{e}}</option>
-                    {% endif %}
-                    {% set ns.i = ns.i + 1 %}
-                {% endfor %}
-            </select>
-
-            у
-
-            <select name="enc_out">
-                {% set ns = namespace(i=0) %}
-                {% for e in encodings %}
-                    {% if ns.i==sel_enc_out %}
-                        <option value="{{ns.i}}" selected>{{e}}</option>
-                    {% else %}
-                        <option value="{{ns.i}}">{{e}}</option>
-                    {% endif %}
-                    {% set ns.i = ns.i + 1 %}
-                {% endfor %}
-            </select>
-        </p>
-    </form>
-
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            Здарылася памылка:
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        {% else %}
-            {% if download_link %}
-                Зроблена! Перайдзіце па спасылцы, каб атрымаць файл: <a href="{{ download_link }}">{{ download_link }}</a>
-            {% else %}
-                Загрузіце файл (да 16 мегабайтаў) з дапамогай інструментаў вышэй
-            {% endif %}
-        {% endif %}
-    {% endwith %}
+    
+        <div class="work_">
+            <section>
+                <div class="container">
+                    <div class="row work_">
+                        <div class="col-3 ptushka_left "></div>
+                            
+                            <div class="col-md-6 col-sm-12">
+                                <form action="" method="POST" id="text_form" enctype="multipart/form-data">
+                                    <input type="file" name="file" class="file">
+                                    <div class="row_1">
+                                        <select name="file_type" class="buttons_">
+                                            {% set ns = namespace(i=0) %}
+                                            {% for e in file_types %}
+                                                {% if ns.i==sel_file_type %}
+                                                    <option value="{{ns.i}}" selected>{{e}}</option>
+                                                {% else %}
+                                                    <option value="{{ns.i}}">{{e}}</option>
+                                                {% endif %}
+                                                {% set ns.i = ns.i + 1 %}
+                                            {% endfor %}
+                                        </select>
+                
+                                    
+                            
+                                        <select name="scheme" class="buttons_">
+                                            {% set ns = namespace(i=0) %}
+                                            {% for e in schemes %}
+                                                {% if ns.i==sel_scheme %}
+                                                    <option value="{{ns.i}}" selected>{{e.name}}</option>
+                                                {% else %}
+                                                    <option value="{{ns.i}}">{{e.name}}</option>
+                                                {% endif %}
+                                                {% set ns.i = ns.i + 1 %}
+                                            {% endfor %}
+                                        </select><br>
+                                    </div>
+                                    
+                                    <div class="row_2">
+                                        <select class="buttons_" name="dir">
+                                            {% if sel_dir==0 %}
+                                                <option value="0" selected>Кірыліца -> Лацінка</option>
+                                                <option value="1">Лацінка -> Кірыліца</option>
+                                            {% elif sel_dir==1 %}
+                                                <option value="0">Кірыліца -> Лацінка</option>
+                                                <option value="1" selected>Лацінка -> Кірыліца</option>
+                                            {% endif %}
+                                        </select>
+                                        
+                                    </div>
+                        
+                                    
+                                    <div class="row_3">  
+                                        З
+                                    <select name="enc_in " class="buttons_">
+                                        {% set ns = namespace(i=0) %}
+                                        {% for e in encodings %}
+                                            {% if ns.i==sel_enc_in %}
+                                                <option value="{{ns.i}}" selected>{{e}}</option>
+                                            {% else %}
+                                                <option value="{{ns.i}}">{{e}}</option>
+                                            {% endif %}
+                                            {% set ns.i = ns.i + 1 %}
+                                        {% endfor %}
+                                    </select>
+                        
+                                    В
+                    
+                                    <select name="enc_out" class="buttons_">
+                                        {% set ns = namespace(i=0) %}
+                                        {% for e in encodings %}
+                                            {% if ns.i==sel_enc_out %}
+                                                <option value="{{ns.i}}" selected>{{e}}</option>
+                                            {% else %}
+                                                <option value="{{ns.i}}">{{e}}</option>
+                                            {% endif %}
+                                            {% set ns.i = ns.i + 1 %}
+                                        {% endfor %}
+                                    </select>
+                                    </div>
+                                    <div class="row_4">
+                                        <input type="submit" value="Трансліт" class="butn_">
+                                    </div>
+                                
+                            </div>
+                        </form>
+                        <div class="col-3 ptushka_right"></div>
+                        <div class="text_">
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                Здарылася памылка:
+                                {% for message in messages %}
+                                    <p>{{ message }}</p>
+                                {% endfor %}
+                            {% else %}
+                                {% if download_link %}
+                                    Зроблена! Перайдзіце па спасылцы, каб атрымаць файл: <a href="{{ download_link }}">{{ download_link }}</a>
+                                {% else %}
+                                    Загрузіце файл (да 16 мегабайтаў) з дапамогай інструментаў вышэй
+                                {% endif %}
+                            {% endif %}
+                        {% endwith %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+           
+        </div>
+    </div>
+           
     
 {% endblock %}
