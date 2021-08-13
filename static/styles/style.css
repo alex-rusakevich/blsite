@@ -4,7 +4,6 @@
 header{
     background-image: url("/static/img/орнамент2.jpg");
     background-size: contain;
-    max-height: 40%;
     border-bottom: 7px solid #FF1C23;
     border-top: 7px solid #FF1C23;
 }
@@ -22,18 +21,9 @@ a{
 }
 .praca_btn{
     background-color: white;
-
-
     border: 2px solid black;
     text-align: center;
     margin-top: -10px;
-}
-
-.right_btn_praca div{
-    max-width: 14em;
-    min-height: 2.5em;
-    margin-left: auto;
-    margin-right: 3em;
 }
 
 .praca_btn:hover{
@@ -71,6 +61,12 @@ a{
     padding-top:10px;
 }
 
+.var_lat{
+    white-space:pre-line;
+    max-width: 220px;
+    padding: 5px;
+}
+
 .text_in{
     margin-bottom: 10px;
     border: 2px solid black;
@@ -104,7 +100,8 @@ a{
     border: 2px solid black;
     border-radius: 6px;
     padding: 5px;
-
+    background-color: white;
+    padding-bottom: 10px;
 }
 
 .buttons_:hover{
@@ -129,14 +126,16 @@ a{
 .work_{
     margin-top: 60px;
     margin-bottom: 20px;
-    height: 300px;;
+    height: 400px;;
 
     
 }
 
 .text_{
-    margin-bottom: 80px;
+margin-top: -30px;
     text-align: center;
+
+
 }
 
 .ptushka_left{
@@ -156,6 +155,7 @@ a{
     padding: 8px;
     text-align: left;
     margin-left: 6px;
+    margin-bottom: -3px;
 }
 
 .row_2{
@@ -189,5 +189,5 @@ a{
 
 .footer{
     text-align: right;
-    margin-right: 10px;
+
 }
