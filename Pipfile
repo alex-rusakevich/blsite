@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+beautifulsoup4 = "*"
+bs4 = "*"
+click = "*"
+flask = "*"
+itsdangerous = "*"
+jinja2 = "*"
+lxml = "*"
+markupsafe = "*"
+soupsieve = "*"
+werkzeug = "*"
+
+[dev-packages]
+black = "*"
+flake8 = "*"
+isort = "*"
+
+[requires]
+python_version = "3.9"
