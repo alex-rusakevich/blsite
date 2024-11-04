@@ -5,8 +5,15 @@ from pathlib import Path
 
 from belat.fileprocessor import FileProcessor
 from belat.schemes import SCHEMES
-from flask import (Flask, after_this_request, flash, redirect, render_template,
-                   request, send_from_directory)
+from flask import (
+    Flask,
+    after_this_request,
+    flash,
+    redirect,
+    render_template,
+    request,
+    send_from_directory,
+)
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
@@ -21,6 +28,14 @@ Path(app.config["UPLOAD_FOLDER"]).mkdir(parents=True, exist_ok=True)
 
 ALLOWED_EXTENSIONS = ["txt", "epub", "fb2"]
 IMAGE_LIST = os.listdir(Path("static/img").resolve())
+
+
+@app.before_request
+def before_request():
+    if not request.is_secure and not app.debug:
+        url = request.url.replace("http://", "https://", 1)
+        code = 301
+        return redirect(url, code=code)
 
 
 @app.route("/favicon.ico")
