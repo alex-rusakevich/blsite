@@ -102,7 +102,7 @@
                                 {% endfor %}
                             {% else %}
                                 {% if download_link %}
-                                    Зроблена! Перайдзіце па спасылцы, каб атрымаць файл: <a href="{{ download_link }}">{{ download_link }}</a>
+                                    Зроблена! Перайдзіце па спасылцы, каб атрымаць файл: <a href="{{static_prefix}}/{{ download_link }}">{{static_prefix}}/{{ download_link }}</a>
                                 {% else %}
                                     Загрузіце файл (да 5 мегабайтаў) з дапамогай інструментаў вышэй
                                 {% endif %}
