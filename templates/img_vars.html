@@ -1,0 +1,7 @@
+<style>
+    :root {
+        {% for image_name in image_list %}
+            --image-{{image_name | replace(".", "-") | replace(" ", "-")}}: url({{ static_prefix }}/static/img/{{image_name}});
+        {% endfor %}
+    }
+</style>

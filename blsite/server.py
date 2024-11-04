@@ -27,6 +27,7 @@ app.config["UPLOAD_FOLDER"] = str(Path("./uploads").resolve())
 Path(app.config["UPLOAD_FOLDER"]).mkdir(parents=True, exist_ok=True)
 
 ALLOWED_EXTENSIONS = ["txt", "epub", "fb2"]
+IMAGE_LIST = os.listdir(Path("static/img").resolve())
 
 
 @app.route("/favicon.ico")
@@ -68,6 +69,7 @@ def index_page():
         sel_scheme=sel_scheme,
         sel_dir=sel_dir,
         static_prefix=app.config["URL_PREFIX"],
+        image_list=IMAGE_LIST,
     )
 
 
@@ -160,6 +162,7 @@ def file_page():
         sel_enc_out=sel_enc_out,
         sel_file_type=sel_file_type,
         static_prefix=app.config["URL_PREFIX"],
+        image_list=IMAGE_LIST,
     )
 
 

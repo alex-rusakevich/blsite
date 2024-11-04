@@ -2,7 +2,7 @@
 
 /*header*/
 header{
-    background-image: url("/static/img/орнамент2.jpg");
+    background-image: var(--image-ornament-jpg);
     background-size: contain;
     border-bottom: 7px solid #FF1C23;
     border-top: 7px solid #FF1C23;
@@ -140,13 +140,13 @@ margin-top: -30px;
 
 .ptushka_left{
     background: no-repeat;
-    background-image: url(/static/img/ptushka.png);
+    background-image: var(--image-ptushka-png);
 
 }
 
 .ptushka_right{
     background: no-repeat;
-    background-image: url(/static/img/ptushka.png);
+    background-image: var(--image-ptushka-png);
     transform: scale(-1,1);
  
     
