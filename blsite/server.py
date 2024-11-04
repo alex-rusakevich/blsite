@@ -1,20 +1,13 @@
 import hashlib
 import os
 import random
-
-from belat.schemes import SCHEMES
-from belat.fileprocessor import FileProcessor
-from flask import (
-    Flask,
-    flash,
-    redirect,
-    render_template,
-    request,
-    send_from_directory,
-    after_this_request,
-)
-from werkzeug.utils import secure_filename
 from pathlib import Path
+
+from belat.fileprocessor import FileProcessor
+from belat.schemes import SCHEMES
+from flask import (Flask, after_this_request, flash, redirect, render_template,
+                   request, send_from_directory)
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
 app.secret_key = os.urandom(24)
