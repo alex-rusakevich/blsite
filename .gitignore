@@ -2,3 +2,4 @@ belat/
 .vscode/
 uploads/
 srv.zip
+__pycache__/

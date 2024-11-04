@@ -21,7 +21,7 @@ app.secret_key = os.urandom(24)
 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024 * 5  # 5 mb max
-
+app.config["URL_PREFIX"] = os.environ.get("URL_PREFIX", "")
 app.config["UPLOAD_FOLDER"] = str(Path("./uploads").resolve())
 
 Path(app.config["UPLOAD_FOLDER"]).mkdir(parents=True, exist_ok=True)
@@ -31,8 +31,10 @@ ALLOWED_EXTENSIONS = ["txt", "epub", "fb2"]
 
 @app.route("/favicon.ico")
 def favicon():
+    print(os.path.join(app.root_path, "static"))
+
     return send_from_directory(
-        os.path.join(app.root_path, "static"),
+        os.path.join(app.root_path, "..", "static"),
         "favicon.ico",
         mimetype="image/vnd.microsoft.icon",
     )
@@ -65,6 +67,7 @@ def index_page():
         text_out=text_out,
         sel_scheme=sel_scheme,
         sel_dir=sel_dir,
+        static_prefix=app.config["URL_PREFIX"],
     )
 
 
@@ -156,6 +159,7 @@ def file_page():
         sel_enc_in=sel_enc_in,
         sel_enc_out=sel_enc_out,
         sel_file_type=sel_file_type,
+        static_prefix=app.config["URL_PREFIX"],
     )
 
 
