@@ -2,17 +2,29 @@ import hashlib
 import os
 import random
 
-import belat
-import belat.worker as worker
-from flask import Flask, flash, redirect, render_template, request, send_from_directory
+from belat.schemes import SCHEMES
+from belat.fileprocessor import FileProcessor
+from flask import (
+    Flask,
+    flash,
+    redirect,
+    render_template,
+    request,
+    send_from_directory,
+    after_this_request,
+)
 from werkzeug.utils import secure_filename
+from pathlib import Path
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../templates", static_folder="../static")
 app.secret_key = os.urandom(24)
 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024 * 16  # 16 mb max
-app.config["UPLOAD_FOLDER"] = "uploads"
+app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024 * 5  # 5 mb max
+
+app.config["UPLOAD_FOLDER"] = str(Path("./uploads").resolve())
+
+Path(app.config["UPLOAD_FOLDER"]).mkdir(parents=True, exist_ok=True)
 
 ALLOWED_EXTENSIONS = ["txt", "epub", "fb2"]
 
@@ -37,7 +49,7 @@ def index_page():
         text_in = request.form.get("text_in")
 
         sel_scheme = int(request.form.get("scheme"))
-        scheme_lat = worker.Worker.get_schemes_from_json(print)[sel_scheme]
+        scheme_lat = list(SCHEMES.values())[sel_scheme]
 
         sel_dir = int(request.form.get("dir"))
 
@@ -48,8 +60,7 @@ def index_page():
 
     return render_template(
         "index.html",
-        schemes=worker.Worker.get_schemes_from_json(print),
-        version=belat.VERSION,
+        schemes=tuple(SCHEMES.values()),
         text_in=text_in,
         text_out=text_out,
         sel_scheme=sel_scheme,
@@ -101,23 +112,25 @@ def file_page():
                 + extens,
             )
             file_in.seek(0)
+
+            print(file_in_path)
             file_in.save(file_in_path)
 
             sel_scheme = int(request.form.get("scheme"))
-            scheme_lat = worker.Worker.get_schemes_from_json(print)[sel_scheme]
+            scheme_lat = list(SCHEMES.values())[sel_scheme]
 
             sel_dir = int(request.form.get("dir"))
-            sel_enc_in = int(request.form.get("enc_in"))
-            sel_enc_out = int(request.form.get("enc_out"))
+            sel_enc_in = int(request.form.get("enc_in", 0))
+            sel_enc_out = int(request.form.get("enc_out", 0))
             sel_file_type = int(request.form.get("file_type"))
             dir_work = ""
 
             if sel_dir == 0:
-                dir_work = worker.Worker.CTL
+                dir_work = FileProcessor.CTL
             elif sel_dir == 1:
-                dir_work = worker.Worker.LTC
+                dir_work = FileProcessor.LTC
 
-            worker.Worker(
+            FileProcessor(
                 file_in_path,
                 file_in_path,
                 encodings[sel_enc_in],
@@ -125,7 +138,6 @@ def file_page():
                 dir_work,
                 scheme_lat,
                 file_types[sel_file_type],
-                belat.VERSION,
             ).work()
 
             file_short_name = os.path.split(file_in_path)[-1]
@@ -134,9 +146,8 @@ def file_page():
 
     return render_template(
         "file_work.html",
-        schemes=worker.Worker.get_schemes_from_json(print),
+        schemes=tuple(SCHEMES.values()),
         file_types=file_types,
-        version=belat.VERSION,
         encodings=encodings,
         download_link=download_link,
         err_msg=err_msg,
@@ -150,6 +161,16 @@ def file_page():
 
 @app.route("/download/<file_name>")
 def download_file(file_name):
+    @after_this_request
+    def remove_file(response):
+        try:
+            os.remove(
+                os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(file_name))
+            )
+        except Exception as error:
+            app.logger.error("Error removing or closing downloaded file handle", error)
+        return response
+
     return send_from_directory(app.config["UPLOAD_FOLDER"], secure_filename(file_name))
 
 

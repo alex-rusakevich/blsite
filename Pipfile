@@ -14,6 +14,7 @@ lxml = "*"
 markupsafe = "*"
 soupsieve = "*"
 werkzeug = "*"
+belat = ">=1.1"
 
 [dev-packages]
 black = "*"
